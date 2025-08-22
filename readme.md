@@ -1,12 +1,16 @@
 # Zenoh on ESP32: The First Implementation over ESP-IDF (v5.4.1)
+
+![esp-zenoh-pic](./pics/esp-zenoh.png)
+
 **This is the first successful integration of Zenoh-Pico on the ESP32 using the ESP-IDF.** 
 I could not find other such working examples online.
 
 This is a fully functional template with all the necessary patches needed for zenoh-pico to be ported over ESP-IDF v5.4.1, for both PUB/SUB over zenoh. Also includes Python scripts for testing.
 
-![pub/sub screenshot](./pub_sub.png)
+![pub/sub screenshot](./pics/pub_sub.png)
 
-![sub/pub screenshot](./sub_pub.png)
+![sub/pub screenshot](./pics/sub_pub.png)
+![sub/pub screenshot](./pics/sub_pub.png)
 
 More about zenoh and zenoh-pico, here [Zenoh-Pico](https://github.com/eclipse-zenoh/zenoh-pico)
 
