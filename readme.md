@@ -30,17 +30,15 @@ More about ESP-IDF, here [ESP-IDF Setup Guide](https://docs.espressif.com/projec
 How to create a new project named `esp32_zenoh`
 
 1.  **Open the ESP-IDF Command Prompt**
-    * Open the enabled command prompt for your ESP-IDF version (e.g., **"ESP-IDF 5.x CMD"**).
-
+ Open the enabled command prompt for your ESP-IDF version (e.g., **"ESP-IDF 5.x CMD"**).
 2.  **Create the Project**
-    ```sh
-    idf.py create-project esp32_zenoh
-    ```
-
+```sh
+idf.py create-project esp32_zenoh
+```
 3.  **Enter the Project Directory**
-    ```sh
-    cd esp32_zenoh
-    ```
+```sh
+cd esp32_zenoh
+```
 
 ## 2. Install the `zenoh-pico` Component
 
@@ -48,24 +46,25 @@ Next, install the zenoh library as a component
 Use `git submodule` to add the `zenoh-pico` library to the project.
 
 1.  **Create the `components` Directory**
-    * From the root of `esp32_zenoh` project, create the directory components (exact name needed).
-    ```sh
-    mkdir components
-    ```
+From the root of `esp32_zenoh` project, create the directory components (exact name needed).
+```sh
+mkdir components
+```
 
 2.  **Add `zenoh-pico` as a Git Submodule**
-    * Go into the components directory and clone the git repo.
-    ```sh
-    cd components
-    git submodule add [https://github.com/eclipse-zenoh/zenoh-pico.git](https://github.com/eclipse-zenoh/zenoh-pico.git)
-    ```
+Go into the components directory and clone the git repo.
+```sh
+cd components
+git submodule add [https://github.com/eclipse-zenoh/zenoh-pico.git](https://github.com/eclipse-zenoh/zenoh-pico.git)
+```
 
 3.  **Initialize the Submodule**
-    * Goto to the project root and run the update command, just in case.
-    ```sh
-    cd ..
-    git submodule update --init --recursive
-    ```
+Goto to the project root and run the update command, just in case.
+```sh
+cd ..
+git submodule update --init --recursive
+```
+
 ## 4. CMakeList.txt
 
 In project root, create the CMakeLists.txt file:
@@ -144,14 +143,18 @@ file /components/zenoh-pico/include/zenoh-pico/config.h
 #define Z_BATCH_MULTICAST_SIZE 2048
 #define Z_CONFIG_SOCKET_TIMEOUT 5000
 ```
-*MOST IMPORTANT* seems to be the line `Z_CONFIG_SOCKET_TIMEOUT 100`from 100 to 5000. ** LATER ADDITION: It seems to work with #define Z_CONFIG_SOCKET_TIMEOUT 1000**. Feel free to experiment with shorter values, but definitely much bigger than the initial 100. Moreover, it mentions in the config.h `pass values to CMake to change the following tokens`, so feel free to pass them via CMake.
+*MOST IMPORTANT* seems to be the line `Z_CONFIG_SOCKET_TIMEOUT 100`from 100 to 5000. **LATER ADDITION: It seems to work with #define Z_CONFIG_SOCKET_TIMEOUT 1000**. Feel free to experiment with shorter values, but definitely much bigger than the initial 100. Moreover, it mentions in the config.h `"*pass values to CMake to change the following tokens*"`, so feel free to pass them via CMake.
 
 ## 7. UDP vs TCP
 
 zenoh can listen to both UDP and TCP. The only line you need to change is
+
 `#define LOCATOR "udp/demo.zenoh.io:7447"`
+
 to
+
 `#define LOCATOR "tcp/demo.zenoh.io:7447"`
+
 Make sure that the server is working (the zenoh people kindly enabled during the writing of this project, thank you!). The easiest way to test is `telnet demo.zenoh.io:7447`. If it stays connected, it works.
 If you have DHCP issues with `demo.zenoh.io`, switch to IP address of it. 
 
@@ -162,7 +165,8 @@ Running the ESP on the IP address of the computer where you will run the subscri
 # 8. Other Alterations (compilation errors)
 
 File: components\zenoh-pico\include\zenoh-pico\system\platform\freertos\lwip.h
-Alter by adding "freertos" in front of any include "not found"
+
+Alter by adding "freertos/" in front of any include "not found"
 ```
 // George
 #include "freertos/FreeRTOS.h"
@@ -179,10 +183,19 @@ extern "C" {
 ```
 
 in file /components/zenoh-pico/src/system/freertos/lwip/network.c
-alter the `#include "FreeRTOS.h"` to `#include "freertos/FreeRTOS.h"`
+
+alter the 
+
+`#include "FreeRTOS.h"` 
+
+to 
+
+`#include "freertos/FreeRTOS.h"`
 
 File \components\zenoh-pico\src\system\freertos\system.c
+
 Add in line ~49
+
 `static portMUX_TYPE task_mux = portMUX_INITIALIZER_UNLOCKED;`
 
 Line ~151
@@ -208,9 +221,14 @@ Line ~168
     taskEXIT_CRITICAL(&task_mux);
 ```
 
-File components/zenoh-pico/src/system/freertos/lwip/network.c, replace:
+File components/zenoh-pico/src/system/freertos/lwip/network.c
+
+replace:
+
 `inet_addr_from_ip4addr(&lsockaddr_in->sin_addr, ip_2_ip4(ip4_addr));`
+
 with
+
 `inet_addr_from_ip4addr(&lsockaddr_in->sin_addr, ip4_addr);`
 
 Errors of not finding libraries like this `#include "FreeRTOS.h"`, replace with `#include "freertos/FreeRTOS.h"`
@@ -218,14 +236,18 @@ Errors of not finding libraries like this `#include "FreeRTOS.h"`, replace with 
 ## 9. Zenoh Debugging
 
 Run `idf.py menuconfig`
+
 Go to Component config ---> Log output ---> Set Default log verbosity to Debug or Info.
+
 Go to Component config ---> LWIP ---> Enable LWIP DEBUG.
+
 Inside the LWIP DEBUG menu, enable TCP & UDP Debug (CONFIG_LWIP_TCP_DEBUG).
+
 **BE CAREFUL:** Flood of messages, could crash.
 
 ## 10. Build and Run
 
-the /main folder has two files: z_pub.c, z_sub.c. You can choose which one to run by altering the first line of the main/CMakeList.txt file. By defauit it runs the z_pub.c
+the /main folder has two files: `z_pub.c`, `z_sub.c`. You can choose which one to run by altering the first line of the `main/CMakeList.txt` file. By defauit it runs the `z_pub.c`.
 
 Configure the target chip and build the project
 
