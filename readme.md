@@ -10,7 +10,6 @@ This is a fully functional template with all the necessary patches needed for ze
 ![pub/sub screenshot](./pics/pub_sub.png)
 
 ![sub/pub screenshot](./pics/sub_pub.png)
-![sub/pub screenshot](./pics/sub_pub.png)
 
 More about zenoh and zenoh-pico, here [Zenoh-Pico](https://github.com/eclipse-zenoh/zenoh-pico)
 
