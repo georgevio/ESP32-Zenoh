@@ -250,7 +250,9 @@ Inside the LWIP DEBUG menu, enable TCP & UDP Debug (CONFIG_LWIP_TCP_DEBUG).
 
 ## 10. Build and Run
 
-the /main folder has two files: `z_pub.c`, `z_sub.c`. You can choose which one to run by altering the first line of the `main/CMakeList.txt` file. By defauit it runs the `z_pub.c`.
+**MUST DO:** Go to folder `main/utils`, rename the file `secret.h.template` to `secret.h` and fill the wifi credentials (SSID, password).
+
+the `/main` folder has two files: `z_pub.c`, `z_sub.c`. You can choose which one to run by altering the first line of the `main/CMakeList.txt` file. By defauit it runs the `z_pub.c`.
 
 Configure the target chip and build the project
 
