@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+project(zenoh_esp32)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DZENOHPICO_PLATFORM_ESP32")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DZENOH_ESPIDF")
+add_definitions(-DZENOH_FREERTOS_LWIP)

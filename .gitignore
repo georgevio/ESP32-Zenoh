@@ -1,0 +1,100 @@
+
+# Ignore secret(s) file
+secrets.h
+secret.h  
+
+#igonre any PKCS files
+*.key
+*.pem
+
+# Ignore multi backup, third_party libs and test folders
+BACKUP/
+test_codes/
+tests/
+third_party/
+certificates/
+temp/
+temp
+managed_components/
+
+# Ignore all *.lock files
+*.lock
+
+# Ignore sdkiconfig.old
+*.old
+
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+*.lnk
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg-info/
+*.eggs/
+*.whl
+dist/
+build/
+*.log
+
+# C
+*.swp
+*~ 
+*.bak
+
+# HTML
+*.log
+*.tmp
