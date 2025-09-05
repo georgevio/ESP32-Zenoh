@@ -16,9 +16,10 @@
 //#define ZENOH_CONNECT_IP "212.71.244.198"
 //#define ZENOH_CONNECT_IP "demo.zenoh.io"
 //#define ZENOH_CONNECT_IP "public.zenoh.io"
-#define ZENOH_CONNECT_IP "192.168.178.181"
+#define ZENOH_IP "192.168.178.181"
 
-
+#define ZENOH_PROTOCOL "udp" // "udp" or "tcp". Start with udp for firewall issues!
+#define ZENOH_PORT "7447" // Change for firewall reasons. An easy choice might be 8080 or SQL ports
 
 /* Time & Timezone setting. 
  * For AWS, UTC is strongly recommended.

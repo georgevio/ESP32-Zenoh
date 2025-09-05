@@ -42,20 +42,20 @@ void zenoh_publisher_task(void* pvParameters) {
 
     // URL in config.h
     char locator[128];
-    sprintf(locator, "udp/%s:7447", ZENOH_CONNECT_IP);
+    sprintf(locator, "%s/%s:%s", ZENOH_PROTOCOL, ZENOH_IP, ZENOH_PORT);
 
     while (1) {
-        printf("\n--- Zenoh-Pico Publisher ---\n");
+        printf("\n--- Zenoh-Pico PUB ---\n");
         printf("Mode: %s\n", MODE);
         printf("Connecting to: %s\n", locator);
-        printf("Publishing on Key: %s\n", KEYEXPR);
+        printf("Publishing on : %s\n", KEYEXPR);
 
         z_owned_config_t config;
         z_config_default(&config);
         zp_config_insert(z_loan_mut(config), Z_CONFIG_MODE_KEY, MODE);
         zp_config_insert(z_loan_mut(config), Z_CONFIG_CONNECT_KEY, locator);
 
-        printf("Attempting to open Zenoh session...\n");
+        printf("Opening PUB Zenoh ...\n");
         z_owned_session_t s;
         if (z_open(&s, z_move(config), NULL) < 0) {
             printf("Error: Zenoh failed. Retry in 29 sec...\n");

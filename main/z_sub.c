@@ -37,27 +37,27 @@ void zenoh_subscriber_task(void* pvParameters) {
 
     // URL in config.h
     char locator[128];
-    sprintf(locator, "tcp/%s:7447", ZENOH_CONNECT_IP);
+    sprintf(locator, "%s/%s:%s", ZENOH_PROTOCOL, ZENOH_IP, ZENOH_PORT);
 
     while (1) {
-        printf("\n--- Zenoh-Pico Subscriber ---\n");
+        printf("\n--- Zenoh-Pico SUB ---\n");
         printf("Mode: %s\n", MODE);
         printf("Connecting to: %s\n", locator);
-        printf("Subscribing to Key: %s\n", KEYEXPR);
+        printf("Subscribing to: %s\n", KEYEXPR);
 
         z_owned_config_t config;
         z_config_default(&config);
         zp_config_insert(z_loan_mut(config), Z_CONFIG_MODE_KEY, MODE);
         zp_config_insert(z_loan_mut(config), Z_CONFIG_CONNECT_KEY, locator);
         
-        printf("Attempting to open Zenoh session...\n");
+        printf("Trying to open Zenoh session...\n");
         z_owned_session_t s;
         if (z_open(&s, z_move(config), NULL) < 0) {
             printf("Error: Zenoh session failed. Retry in 37 sec...\n\n");
             vTaskDelay(pdMS_TO_TICKS(37000));
             continue;
         }
-        printf("Zenoh session opened successfully!\n");
+        printf("Zenoh session opened successfully :)\n");
 
         zp_start_read_task(z_loan_mut(s), NULL);
         zp_start_lease_task(z_loan_mut(s), NULL);
