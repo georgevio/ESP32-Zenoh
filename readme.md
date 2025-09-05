@@ -7,6 +7,9 @@ I could not find other such working examples online.
 
 This is a fully functional template with all the necessary patches needed for zenoh-pico to be ported over ESP-IDF v5.4.1, for both PUB/SUB over zenoh. Also includes Python scripts for testing.
 
+## Sept 2025 UPDATE
+Rearding the Python scripts and running the zenoh local server, read carefully the readme.txt file inside the folder /python_scripts
+
 ![pub/sub screenshot](./pics/pub_sub.png)
 
 ![sub/pub screenshot](./pics/sub_pub.png)

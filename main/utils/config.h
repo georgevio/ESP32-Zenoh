@@ -14,8 +14,10 @@
 //#define ZENOH_CONNECT_IP "demo.zenoh.io"
 // this below is the demo.zenoh.io IP address
 //#define ZENOH_CONNECT_IP "212.71.244.198"
-#define ZENOH_CONNECT_IP "demo.zenoh.io"
+//#define ZENOH_CONNECT_IP "demo.zenoh.io"
 //#define ZENOH_CONNECT_IP "public.zenoh.io"
+#define ZENOH_CONNECT_IP "192.168.178.181"
+
 
 
 /* Time & Timezone setting. 

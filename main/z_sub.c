@@ -37,7 +37,7 @@ void zenoh_subscriber_task(void* pvParameters) {
 
     // URL in config.h
     char locator[128];
-    sprintf(locator, "udp/%s:7447", ZENOH_CONNECT_IP);
+    sprintf(locator, "tcp/%s:7447", ZENOH_CONNECT_IP);
 
     while (1) {
         printf("\n--- Zenoh-Pico Subscriber ---\n");
