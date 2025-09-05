@@ -9,7 +9,7 @@ OPEN THE FIREWALL PORTS both for UDP/TCP 7447 both inbound/outbound and add /pat
 
 Run the zenohd.exe file with the following parameters for both UDP & TCP for all IP addresses on the host:
 
-```.\zenohd.exe -l tcp/0.0.0.0:7447 -l udp/0.0.0.0:7447.\zenohd.exe -l tcp/0.0.0.0:7447 -l udp/0.0.0.0:7447```
+```.\zenohd.exe -l tcp/0.0.0.0:7447 -l udp/0.0.0.0:7447```
 
 ## ESP32 Devs seem to connect fine to udp
 
