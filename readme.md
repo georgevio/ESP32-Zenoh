@@ -7,9 +7,6 @@ I could not find other such working examples online.
 
 This is a fully functional template with all the necessary patches needed for zenoh-pico to be ported over ESP-IDF v5.4.1, for both PUB/SUB over zenoh. Also includes Python scripts for testing.
 
-## Sept 2025 UPDATE
-Rearding the Python scripts and running the zenoh local server, read carefully the readme.txt file inside the folder /python_scripts
-
 ![pub/sub screenshot](./pics/pub_sub.png)
 
 ![sub/pub screenshot](./pics/sub_pub.png)
@@ -17,6 +14,9 @@ Rearding the Python scripts and running the zenoh local server, read carefully t
 More about zenoh and zenoh-pico, here [Zenoh-Pico](https://github.com/eclipse-zenoh/zenoh-pico)
 
 More about ESP-IDF, here [ESP-IDF Setup Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html)
+
+### Sept 2025 UPDATE
+Rearding the Python scripts and running the zenoh local server, read carefully the readme.txt file inside the folder /python_scripts
 
 #Zenoh #ESP32 #ESPRESSIF #ESP-IDF #IoT #EdgeComputing #Microcontrollers #FreeRTOS 
 
