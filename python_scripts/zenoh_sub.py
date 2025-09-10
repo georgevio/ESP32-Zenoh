@@ -2,24 +2,30 @@ import zenoh
 import time
 
 # --- Configuration ---
-# Define connection details
-endpoint = "udp/demo.zenoh.io:7447"
-key = "esp32/public/test"
+endpoint = "udp/192.168.178.181:7447"
+key = "faces/images"
+
+# --- Global Counter ---
+message_counter = 0
 
 # --- Functions ---
 def listener(sample):
     """Callback function to handle incoming messages."""
-    payload = bytes(sample.payload).decode('utf-8')
+    global message_counter
     key_expr = sample.key_expr
-    print(f" < Received on '{key_expr}': '{payload}'")
+    try:
+        payload = bytes(sample.payload).decode('utf-8')
+        print(f" < Received on '{key_expr}': '{payload}'")
+    except:
+        message_counter += 1
+        print(f" < Received on '{key_expr}': new message '{message_counter}'")
 
 # --- Main Program ---
 print("--- Zenoh Subscriber ---")
-print(f"I am a Subscriber")
+print("I am a Subscriber")
 print(f"Connecting to: {endpoint}")
 print(f"Subscribing to Key: {key}\n")
 
-# Create a Zenoh config object
 conf = zenoh.Config()
 conf.insert_json5("connect", f'{{"endpoints": ["{endpoint}"]}}')
 

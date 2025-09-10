@@ -3,8 +3,11 @@ import time
 
 # --- Configuration ---
 # Define connection details
-endpoint = "udp/demo.zenoh.io:7447"
-key = "esp32/public/test"
+#endpoint = "udp/demo.zenoh.io:7447"
+#key = "esp32/public/test"
+
+endpoint = "udp/192.168.178.181:7447"
+key = "faces/images"
 
 # Create a Zenoh config object
 conf = zenoh.Config()
